@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/table"; // Adjust import path as needed
 import { Badge } from "./ui/badge";
 import { useAdminTickets } from "@/lib/useAdminTickets";
+import { Check, Minus } from "lucide-react";
+import { Dialog, DialogTrigger } from "./ui/dialog";
+import AdminTicketDialog from "./admin-ticket-dialog";
 
 export default function AdminTicketsTable() {
   const { tickets, loading: ticketsLoading } = useAdminTickets();
@@ -68,23 +71,28 @@ export default function AdminTicketsTable() {
               </TableRow>
             ) : (
               filteredTickets.map((row, idx) => (
-                <TableRow key={row.id || idx} className={idx % 2 === 0 ? "bg-background" : "bg-muted/30"}>
-                  {columns.map(col => (
-                    <TableCell key={col.key} className="px-4 py-2">
-                      {col.key === "active"
-                        ? row.active ? <Badge variant="outline">Active</Badge> : <Badge variant="outline">Archived</Badge>
-                        : col.key === "problem_type" ? <Badge variant="destructive">{row.problem_type}</Badge>
-                          : col.key === "hostel" ? <Badge variant="default">{row.hostel}</Badge>
-                            : col.key === "createdAt" || col.key === "resolvedAt"
-                              ? row[col.key]
-                                ? row[col.key].toDate
-                                  ? row[col.key].toDate().toLocaleString()
-                                  : new Date(row[col.key]).toLocaleString()
-                                : ""
-                              : row[col.key] ?? ""}
-                    </TableCell>
-                  ))}
-                </TableRow>
+                <Dialog key={row.id}>
+                  <DialogTrigger asChild>
+                    <TableRow key={row.id || idx} className={idx % 2 === 0 ? "bg-background" : "bg-muted/30"}>
+                      {columns.map(col => (
+                        <TableCell key={col.key} className="px-4 py-2">
+                          {col.key === "active"
+                            ? row.active ? <Badge variant="outline"><Check /> Active</Badge> : <Badge variant="outline"><Minus /> Archived</Badge>
+                            : col.key === "problem_type" ? <Badge variant="destructive">{row.problem_type}</Badge>
+                              : col.key === "hostel" ? <Badge variant="default">{row.hostel}</Badge>
+                                : col.key === "createdAt" || col.key === "resolvedAt"
+                                  ? row[col.key]
+                                    ? row[col.key].toDate
+                                      ? row[col.key].toDate().toLocaleString()
+                                      : new Date(row[col.key]).toLocaleString()
+                                    : ""
+                                  : row[col.key] ?? ""}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  </DialogTrigger>
+                  <AdminTicketDialog ticket={row} />
+                </Dialog>
               ))
             )}
           </TableBody>
