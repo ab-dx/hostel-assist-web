@@ -16,7 +16,7 @@ export async function POST(request) {
     const token = authHeader.split(' ')[1];
     const decodedToken = await adminAuth.verifyIdToken(token)
     const uid = decodedToken.uid;
-    const displayName = decodedToken.displayName;
+    const displayName = decodedToken.displayName || decodedToken.name;
     const db = adminFirestore;
     const userDocRef = db.collection('users').doc(uid);
     const userDoc = await userDocRef.get();
