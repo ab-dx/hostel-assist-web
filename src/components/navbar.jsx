@@ -1,15 +1,31 @@
-import { useAuth } from "@/context/AuthUserContext";
+"use client";
 import { LangToggle } from "./lang-toggle";
 import { ModeToggle } from "./theme-toggle";
 import ProfileDropdown from "./profile-dropdown";
-import { HandHeart } from "lucide-react";
+import { HousePlus } from "lucide-react";
+import { SidebarTrigger } from "./ui/sidebar";
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
+  const path = usePathname();
+  const [pathName, setPathName] = useState(path);
+  useEffect(() => {
+    if (path.toLowerCase().includes("admin")) {
+      setPathName("Admin")
+    }
+    else if (path.toLowerCase().includes("home")) {
+      setPathName("Home")
+    }
+    else if (path.toLowerCase().includes("technician")) {
+      setPathName("Technician")
+    }
+  }, [path])
   return (
-    <div className="w-full fixed bg-background/50 p-3 border-b flex items-center backdrop-blur-md">
-      <span className="flex-1 font-semibold uppercase flex flex-row gap-4">
-        <HandHeart className="text-primary" />
-        Hostel Assist
+    <div className="flex w-full bg-background p-3 border-b items-center backdrop-blur-md">
+      <span className="flex-1 font-medium flex flex-row gap-4 items-center">
+        <SidebarTrigger />
+        {pathName}
       </span>
       <span className="flex gap-4 items-center">
         <LangToggle />

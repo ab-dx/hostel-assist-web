@@ -1,6 +1,6 @@
 "use client";
 import Navbar from "@/components/navbar";
-import { useAuth } from "../../context/AuthUserContext";
+import { useAuth } from "@/context/AuthUserContext";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -10,6 +10,9 @@ import LoadingPage from "@/components/loading-page";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import AdminTicketsTable from "@/components/admin-tickets-table";
 import { useAdminTickets } from "@/lib/useAdminTickets";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AdminSidebar } from "@/components/admin-sidebar";
+import { Inbox, LayoutGrid, Table } from "lucide-react";
 
 export default function Admin() {
   const { authUser, loading, signInWithGoogle, signOutUser } = useAuth();
@@ -27,34 +30,38 @@ export default function Admin() {
 
   return authUser ? (
     <div>
-      <Navbar />
-      <main className="pt-[6rem] flex flex-col items-center justify-center ">
-        <section>
-          <Tabs defaultValue="inbox" className="w-full">
-            <span className="flex items-center">
-              <span className="flex-1">
-                <TabsList>
-                  <TabsTrigger value="inbox">Inbox</TabsTrigger>
-                  <TabsTrigger value="archive">Archive</TabsTrigger>
-                </TabsList>
-              </span>
-            </span>
-            <Separator />
-            <ScrollArea className="h-[75vh] px-4">
-              <TabsContent value="inbox">
-                <AdminTicketsTable />
-              </TabsContent>
-              <TabsContent value="archive">
-                {loadingTickets ? "Archived Tickets will be shown here" :
-                  (tickets.filter(ticket => !ticket.active).length > 0) ?
-                    (tickets.filter(ticket => !ticket.active).map(ticket => <TicketCard key={ticket.createdAt} {...ticket} />))
-                    : ("No archived tickets")
-                }
-              </TabsContent>
-            </ScrollArea>
-          </Tabs>
-        </section>
-      </main>
+      <SidebarProvider>
+        <AdminSidebar />
+        <SidebarInset>
+          <Navbar />
+          <main className="pt-[6rem] flex flex-col items-center justify-center w-full">
+            <section>
+              <h2 className="text-3xl font-semibold mb-4 flex items-center gap-4"><Inbox size={40} />Inbox</h2>
+              <Tabs defaultValue="table" className="w-full">
+                <span className="flex items-center">
+                  <span className="flex-1">
+                    <TabsList>
+                      <TabsTrigger value="table"><Table /></TabsTrigger>
+                      <TabsTrigger value="grid"><LayoutGrid /></TabsTrigger>
+                    </TabsList>
+                  </span>
+                </span>
+                <Separator />
+                <ScrollArea className="h-[75vh] px-4">
+                  <TabsContent value="table">
+                    <AdminTicketsTable />
+                  </TabsContent>
+                  <TabsContent value="grid">
+                    {loadingTickets ? "Tickets will be shown here" :
+                      (tickets.map(ticket => <TicketCard key={ticket.createdAt} {...ticket} />))
+                    }
+                  </TabsContent>
+                </ScrollArea>
+              </Tabs>
+            </section>
+          </main>
+        </SidebarInset>
+      </SidebarProvider>
     </div>
   ) : (
     <button onClick={signInWithGoogle}>Sign in with Google</button>

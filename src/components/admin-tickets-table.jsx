@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/table"; // Adjust import path as needed
 import { Badge } from "./ui/badge";
 import { useAdminTickets } from "@/lib/useAdminTickets";
-import { Check, Minus } from "lucide-react";
+import { CircleCheck, CircleMinus } from "lucide-react";
 import { Dialog, DialogTrigger } from "./ui/dialog";
 import AdminTicketDialog from "./admin-ticket-dialog";
 
@@ -42,8 +42,7 @@ export default function AdminTicketsTable() {
   }, [tickets, globalFilter]);
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">All Tickets</h2>
+    <div className="py-4">
       <input
         type="text"
         placeholder="Search tickets..."
@@ -53,7 +52,7 @@ export default function AdminTicketsTable() {
       />
       <div className="overflow-x-auto rounded border">
         <Table>
-          <TableHeader>
+          <TableHeader className="bg-muted">
             <TableRow>
               {columns.map(col => (
                 <TableHead key={col.key} className="px-4 py-2">
@@ -77,7 +76,7 @@ export default function AdminTicketsTable() {
                       {columns.map(col => (
                         <TableCell key={col.key} className="px-4 py-2">
                           {col.key === "active"
-                            ? row.active ? <Badge variant="outline"><Check /> Active</Badge> : <Badge variant="outline"><Minus /> Archived</Badge>
+                            ? row.active ? <Badge variant="outline"><CircleCheck className="text-green-600" /> Active</Badge> : <Badge variant="outline"><CircleMinus /> Archived</Badge>
                             : col.key === "problem_type" ? <Badge variant="destructive">{row.problem_type}</Badge>
                               : col.key === "hostel" ? <Badge variant="default">{row.hostel}</Badge>
                                 : col.key === "createdAt" || col.key === "resolvedAt"
