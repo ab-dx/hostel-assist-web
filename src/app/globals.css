@@ -166,7 +166,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
-    font-family: "Funnel Display";
+    font-family: "Funnel Sans";
   }
   body {
     @apply bg-background text-foreground;

@@ -64,7 +64,7 @@ export default function ResolveDialog({ ticketId }) {
     {
       remarks: remarks,
       resolved_image_url: resolvedImage,
-      // parts_image_url: partsImage,
+      parts_image_url: partsImage,
       id: ticketId
     };
     console.log(payload)
