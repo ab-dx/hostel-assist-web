@@ -16,7 +16,7 @@ export async function POST(request) {
     const token = authHeader.split(' ')[1];
     const decodedToken = await adminAuth.verifyIdToken(token)
     const uid = decodedToken.uid;
-    const displayName = decodedToken.displayName || decodedToken.name;
+    const displayName = decodedToken.displayName || decodedToken.name || "User";
     const db = adminFirestore;
     const userDocRef = db.collection('users').doc(uid);
     const userDoc = await userDocRef.get();
@@ -36,6 +36,7 @@ export async function POST(request) {
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }

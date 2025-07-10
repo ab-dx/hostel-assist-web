@@ -7,7 +7,7 @@ import LoadingPage from "@/components/loading-page";
 import axios from "axios";
 
 export default function LogIn() {
-  const { authUser, loading, signInWithGoogle, signInWithEmailAndPassword, signOutUser } = useAuth();
+  const { authUser, loading, signInWithGoogle, signInWithEmail, signOutUser } = useAuth();
 
   const router = useRouter();
 
@@ -53,7 +53,7 @@ export default function LogIn() {
     <>
       <div className="bg-muted flex min-h-svh flex-col items-center justify-center p-6 md:p-10">
         <div className="w-full max-w-sm md:max-w-3xl">
-          <LoginForm signInWithGoogle={signInWithGoogle} signInWithEmailAndPassword={signInWithEmailAndPassword} />
+          <LoginForm signInWithGoogle={signInWithGoogle} signInWithEmail={signInWithEmail} />
         </div>
       </div>
     </>

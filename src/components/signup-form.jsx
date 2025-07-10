@@ -25,7 +25,7 @@ export function SignUpForm({
               alt="Image"
               className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale" />
           </div>
-          <form className="p-6 md:p-8">
+          <div className="p-6 md:p-8">
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome</h1>
@@ -48,7 +48,7 @@ export function SignUpForm({
                 <Input id="password" type="password" value={password}
                   onChange={e => setPassword(e.target.value)} required />
               </div>
-              <Button type="submit" className="w-full" onClick={() => { signUpWithEmail(email, password) }}>
+              <Button className="w-full" onClick={() => { signUpWithEmail(email, password) }}>
                 Sign Up
               </Button>
               <div
@@ -74,7 +74,7 @@ export function SignUpForm({
                 </Link>
               </div>
             </div>
-          </form>
+          </div>
         </CardContent>
       </Card>
     </div>

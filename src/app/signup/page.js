@@ -16,12 +16,19 @@ export default function LogIn() {
       if (authUser) {
         const token = await authUser.getIdToken(true)
         try {
-          await axios.post('/api/register', {}, {
+          const response = await axios.post('/api/register', {}, {
             headers: {
               'Authorization': `Bearer ${token}`
             }
           })
-          router.replace("/home");
+          if (response.data.success) {
+            if (response.data.role == 'user')
+              router.replace("/home");
+            if (response.data.role == 'technician')
+              router.replace("/technician");
+            if (response.data.role == 'admin')
+              router.replace("/admin");
+          }
           return true
         } catch (e) {
           console.error(e)
