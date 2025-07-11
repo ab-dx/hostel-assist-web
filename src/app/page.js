@@ -12,7 +12,6 @@ export default function Landing() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Animate each section individually as it enters the viewport
     gsap.utils.toArray(".reveal-section").forEach((section) => {
       gsap.fromTo(
         section,
@@ -24,7 +23,7 @@ export default function Landing() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: section,
-            start: "top 60%", // Triggers when the top of the section hits 75% down the viewport
+            start: "top 90%",
             toggleActions: "play none none none",
           },
         }
