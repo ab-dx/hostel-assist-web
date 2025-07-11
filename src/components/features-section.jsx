@@ -9,20 +9,20 @@ import {
 
 const features = [
   {
-    icon: RocketIcon,
-    title: "Fast Performance",
-    description:
-      "Optimized for speed and efficiency, ensuring your application runs smoothly.",
-  },
-  {
     icon: ShieldCheckIcon,
     title: "Secure by Default",
-    description: "Built-in security features to protect your data and users.",
+    description: "Role-based access control to protect your data and users.",
   },
   {
     icon: ZapIcon,
     title: "Easy Integration",
-    description: "Simple to integrate with your existing tools and workflows.",
+    description: "Simple to integrate with your existing workflows.",
+  },
+  {
+    icon: RocketIcon,
+    title: "Automation",
+    description:
+      "Automatically assign tasks and compute estimates with powerful agents.",
   },
   {
     icon: BarChartIcon,
@@ -40,13 +40,12 @@ export default function FeatureSection() {
         </h2>
         <p className="text-muted-foreground mx-auto max-w-2xl">
           Everything you need to get your work done efficiently and effectively.
-          Built for developers, designed for success.
         </p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {features.map((feature) => (
-          <Card key={feature.title} className="p-0">
+          <Card key={feature.title} className="p-0 hover:scale-105 transition">
             <CardContent className="space-y-2 p-6">
               <feature.icon className="text-primary h-12 w-12" />
               <h3 className="font-bold">{feature.title}</h3>

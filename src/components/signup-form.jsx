@@ -21,9 +21,9 @@ export function SignUpForm({
 
           <div className="bg-muted relative hidden md:block">
             <img
-              src="/placeholder.svg"
+              src="/hostel.jpeg"
               alt="Image"
-              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale" />
+              className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.6] " />
           </div>
           <div className="p-6 md:p-8">
             <div className="flex flex-col gap-6">

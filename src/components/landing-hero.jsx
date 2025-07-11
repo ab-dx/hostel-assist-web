@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowUpRight, CirclePlay } from "lucide-react";
+import { ArrowUpRight, LogInIcon } from "lucide-react";
 import { BackgroundPattern } from "@/components/ui/background-pattern";
 import Link from "next/link";
 
@@ -19,13 +19,16 @@ export default function LandingHero() {
           <Link href="/signup"><Button size="lg" className="rounded-full text-base">
             Sign Up<ArrowUpRight className="!h-5 !w-5" />
           </Button></Link>
-          <Button
-            variant="outline"
-            size="lg"
-            className="rounded-full text-base shadow-none"
-          >
-            <CirclePlay className="!h-5 !w-5" /> Watch Demo
-          </Button>
+          <Link href="/login">
+            <Button
+              variant="outline"
+              size="lg"
+              className="rounded-full text-base shadow-none flex gap-4"
+            >
+              <LogInIcon />
+              Log In
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

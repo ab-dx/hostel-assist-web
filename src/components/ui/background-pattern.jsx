@@ -24,7 +24,7 @@ export const BackgroundPattern = () => {
       />
       <Particles
         className="absolute inset-0"
-        quantity={100}
+        quantity={300}
         ease={80}
         color={isLightTheme ? "#000" : "#fff"}
         refresh

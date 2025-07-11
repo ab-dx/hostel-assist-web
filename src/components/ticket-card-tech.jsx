@@ -15,7 +15,7 @@ import ResolveDialog from "./resolve-dialog";
 
 export default function TicketCardTech({ problem_type, remarks, image_url, createdAt, floor, hostel, active, ticketId }) {
   return (
-    <Card className="my-4 flex flex-row hover:shadow-xl transition hover:translate-y-[-5px]">
+    <Card className="my-4 flex flex-col md:flex-row hover:shadow-xl transition hover:translate-y-[-5px]">
       <div className="flex flex-col gap-2 flex-1">
         <CardHeader className="flex-1">
           <CardTitle>{problem_type}</CardTitle>
