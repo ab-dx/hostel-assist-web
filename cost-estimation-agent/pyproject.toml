@@ -1,0 +1,18 @@
+[project]
+name = "cost-estimation-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "dotenv>=0.9.9",
+    # "google-cloud-aiplatform>=1.76.0",
+    "langchain>=0.3.26",
+    "langchain-google-genai>=2.1.6",
+    # "langchain-groq>=0.3.5",
+    "langchain-tavily>=0.2.7",
+    "langgraph>=0.5.1",
+    "pillow>=11.3.0",
+    "vertexai>=1.43.0",
+    "google-adk>=1.5.0",
+]
