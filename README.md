@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Hostel Assist
 
-## Getting Started
+An agentic grievance redressal platform for analyzing hostel issues, estimating repair costs, and assigning available technicians.
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Hostel Assist streamlines the maintenance workflow in hostels by leveraging AI to automatically analyze reported issues through image recognition, estimate repair costs, and intelligently assign the right technician (plumber, electrician, or general technician) based on availability and expertise.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Preview
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### User View
+![User Dashboard](./public/user-view.png)
+![User Grievance Submission](./public/user-view2.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Technician View
+![Technician Dashboard](./public/tech-view.png)
 
-## Learn More
+### Admin View
+![Admin Dashboard](./public/admin-view.png)
 
-To learn more about Next.js, take a look at the following resources:
+## Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Issue Reporting** - Submit maintenance requests with images of the problem
+- **AI-Powered Analysis** - Automatic image recognition to identify issue type and severity
+- **Cost Estimation** - Intelligent repair cost estimation using multi-modal AI
+- **Smart Assignment** - Automatic assignment of available technicians based on skill match
+- **Real-time Tracking** - Monitor status of all maintenance requests
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
 
-## Deploy on Vercel
+- **Frontend**: Next.js, React, Tailwind CSS, shadcn/ui
+- **Backend**: Firebase (Firestore, Cloud Functions)
+- **AI/ML**: LangGraph, Vertex AI (Google Cloud Platform)
+- **Infrastructure**: Serverless event-driven architecture
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Architecture
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The platform uses an event-driven serverless architecture:
+
+1. **Issue Submission** - Users submit grievances with images via the web interface
+2. **Image Analysis** - Cloud Functions trigger AI analysis using Vertex AI
+3. **Cost Estimation** - LangGraph agentic workflows process multi-modal inputs
+4. **Technician Assignment** - Available technicians are matched based on skill requirements
+5. **Notifications** - Real-time updates via Firestore listeners
+
